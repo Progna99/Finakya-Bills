@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView8"
                     android:layout_weight="1"
-                    android:text="Id" />
+                    android:text="Upi ID" />
             </RelativeLayout>
 
         </LinearLayout>

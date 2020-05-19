@@ -6,9 +6,9 @@ import io.realm.annotations.PrimaryKey;
 public class billsamt extends RealmObject {
     @PrimaryKey
     private long id;
-    private String type,type1;
-    private String amt,amt1;
-    private int image,img;
+    private String type;
+    private String amt;
+    private int image;
 
 
     public String getAmt() {

@@ -9,56 +9,54 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
+
 public class PaynowActivity extends AppCompatActivity {
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private PageAdaptercredit adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.paynow);
-        Intent i = new Intent();
-        String amt = i.getStringExtra("amount");
-        TextView amtv = (TextView) findViewById(R.id.textView12);
-        amtv.setText(amt);
+        setContentView(R.layout.activity_main);
+        tabLayout=(TabLayout) findViewById(R.id.tabview);
+        viewPager=(ViewPager)findViewById(R.id.pager);
+        adapter=new PageAdaptercredit(getSupportFragmentManager());
+        adapter.AddFragment(new Fragmentcredit(),"Credit Card");
+        adapter.AddFragment(new FragmentDebit(),"Debit Card");
+        adapter.AddFragment(new FragmentEwallet(),"E Wallet");
+        adapter.AddFragment(new FragmentNetBank(),"Net banking");
+        adapter.AddFragment(new FragmentUpi(),"UPI");
+
+
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
-    public void opencredit(View view) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.details_container,new creditactivity());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
-    public void openUPI(View view) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.details_container,new upiactivity());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
 
-    public void openewallet(View view) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.details_container,new ewalletactivity());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
 
-    public void opendebit(View view) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.details_container,new debitactivity());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
 
-    public void opennetbanking(View view) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.details_container,new netbankingactivity());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
