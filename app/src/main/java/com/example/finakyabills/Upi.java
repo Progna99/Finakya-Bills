@@ -1,6 +1,9 @@
 package com.example.finakyabills;
 
-public class Upi {
+import io.realm.RealmObject;
+
+public class Upi extends RealmObject {
+    private long id5;
     private String name;
     private String phone;
     private String id;
@@ -14,6 +17,7 @@ public class Upi {
     }
 
     public Upi(String name, String phone, String id, String account, String bank, String upi, int image5, int image6) {
+
         this.name = name;
         this.phone = phone;
         this.id = id;
@@ -22,6 +26,14 @@ public class Upi {
         this.upi=upi;
         this.image5 = image5;
         this.image6 = image6;
+    }
+
+    public long getId5() {
+        return id5;
+    }
+
+    public void setId5(long id5) {
+        this.id5 = id5;
     }
 
     public String getName() {

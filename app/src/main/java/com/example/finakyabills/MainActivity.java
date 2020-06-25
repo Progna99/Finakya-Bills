@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,12 +26,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
-        setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
+       // recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+
         Realm realm = Realm.getDefaultInstance();
 
         try {
@@ -39,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
-        if (test.size() == 0) {
+        if (test.size()<1) {
 
             realm.beginTransaction();
             try {
@@ -57,12 +63,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
-            try (Realm realm1 = Realm.getDefaultInstance()) {
+        Realm realm1 = Realm.getDefaultInstance();
+            try  {
                 RealmResults<billsamt> billsamtRealmResults = realm1.where(billsamt.class).findAll();
                 billadapter bd = new billadapter(billsamtRealmResults, this);
                 recyclerView.setAdapter(bd);
             }
+            catch (Exception e){}
 
             //bill=new ArrayList<>();
 
@@ -73,18 +80,8 @@ public class MainActivity extends AppCompatActivity {
             //bill.add(new billsproduct("TV","1000",R.drawable.television));
 
 
-
-
-
-
     }
 
-    public void payment(View view) {
-        Intent i = new Intent(MainActivity.this, PaynowActivity.class);
-        TextView tx = (TextView) findViewById(R.id.textView2);
-        String s = tx.getText().toString();
-        i.putExtra("amount", s);
-        startActivity(i);
-    }
+
 }
 

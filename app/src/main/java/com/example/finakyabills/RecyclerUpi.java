@@ -12,11 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import io.realm.RealmResults;
+
 public class RecyclerUpi extends RecyclerView.Adapter<RecyclerUpi.MyViewHolder5> {
     Context mctx5;
-    List<Upi> mdata5;
+    RealmResults<Upi> mdata5;
 
-    public RecyclerUpi(Context mctx5, List<Upi> mdata5) {
+    public RecyclerUpi(Context mctx5, RealmResults<Upi> mdata5) {
         this.mctx5 = mctx5;
         this.mdata5 = mdata5;
     }

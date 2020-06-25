@@ -14,10 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 public class FragmentNetBank extends Fragment {
     View v;
     RecyclerView myrecycler4;
-    List<Netbanking> net;
+    List<Netbanking> typenet;
+    RealmResults<Netbanking> test3;
 
 
 
@@ -30,19 +34,43 @@ public class FragmentNetBank extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v=inflater.inflate(R.layout.netbankingfragment,container,false);
         myrecycler4=(RecyclerView)v.findViewById(R.id.recycler4);
-        RecyclerNetBanking adapter4=new RecyclerNetBanking(getContext(),net);
+
+        Realm realm3= Realm.getDefaultInstance();
+
+        try {
+            test3=realm3.where(Netbanking.class).findAll();
+        }
+        catch (Exception e){
+
+        }
+        if (test3.size()<1){
+            realm3.beginTransaction();
+            try {
+                Netbanking net=realm3.createObject(Netbanking.class);
+                net.setBankimage(R.drawable.citi);
+                net.setDigit("3152");
+                realm3.commitTransaction();
+            }
+            catch (Exception e){
+                realm3.cancelTransaction();
+            }
+        }
+        RealmResults<Netbanking> list_test3=realm3.where(Netbanking.class).findAll();
+
+
+        RecyclerNetBanking adapter4=new RecyclerNetBanking(getContext(),list_test3);
         myrecycler4.setLayoutManager(new LinearLayoutManager(getActivity()));
         myrecycler4.setAdapter(adapter4);
         return v;
     }
 
-    @Override
+    /*@Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         net=new ArrayList<>();
         net.add(new Netbanking(R.drawable.hdfc,"7561"));
         net.add(new Netbanking(R.drawable.citi,"6521"));
 
-    }
+    }*/
 }
 

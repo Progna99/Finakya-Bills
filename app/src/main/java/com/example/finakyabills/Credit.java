@@ -1,10 +1,23 @@
 package com.example.finakyabills;
 
-public class Credit {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Credit extends RealmObject {
+    @PrimaryKey
+    private long id;
     private int image;
 
     public Credit() {
 
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Credit(int image) {

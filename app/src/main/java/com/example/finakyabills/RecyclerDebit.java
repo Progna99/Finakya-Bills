@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import io.realm.RealmResults;
+
 public class RecyclerDebit extends RecyclerView.Adapter<RecyclerDebit.MyViewHolder2> {
     Context mctx2;
-    List<Debit> mData2;
+    RealmResults<Debit> mData2;
 
-    public RecyclerDebit(Context mctx2, List<Debit> mData2) {
+    public RecyclerDebit(Context mctx2, RealmResults<Debit> mData2) {
         this.mctx2 = mctx2;
         this.mData2 = mData2;
     }
@@ -31,7 +33,9 @@ public class RecyclerDebit extends RecyclerView.Adapter<RecyclerDebit.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder2 holder, int position) {
-        holder.imagedebit.setImageResource(mData2.get(position).getImage2());
+        Debit obj=mData2.get(position);
+        holder.imagedebit.setImageDrawable(mctx2.getResources().getDrawable(obj.getImage2()));
+       // holder.imagedebit.setImageResource(mData2.get(position).getImage2());
 
     }
 
@@ -46,9 +50,7 @@ public class RecyclerDebit extends RecyclerView.Adapter<RecyclerDebit.MyViewHold
 
         public MyViewHolder2(@NonNull View itemView) {
             super(itemView);
-            imagedebit=(ImageView) itemView.findViewById(R.id.imageView2);
+            imagedebit=(ImageView) itemView.findViewById(R.id.imagedebit);
         }
     }
-
-
 }

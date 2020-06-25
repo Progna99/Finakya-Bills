@@ -52,8 +52,9 @@
                 android:layout_marginLeft="168dp"
                 android:layout_marginEnd="14dp"
                 android:text="Pay Now"
-                android:onClick="payment"
-                />
+
+            />
+
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

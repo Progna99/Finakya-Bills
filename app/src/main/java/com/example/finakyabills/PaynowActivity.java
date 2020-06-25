@@ -17,11 +17,12 @@ public class PaynowActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private PageAdaptercredit adapter;
+    TextView amt ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.paynow);
         tabLayout=(TabLayout) findViewById(R.id.tabview);
         viewPager=(ViewPager)findViewById(R.id.pager);
         adapter=new PageAdaptercredit(getSupportFragmentManager());
@@ -31,6 +32,10 @@ public class PaynowActivity extends AppCompatActivity {
         adapter.AddFragment(new FragmentNetBank(),"Net banking");
         adapter.AddFragment(new FragmentUpi(),"UPI");
 
+        amt= (TextView)findViewById(R.id.textView12);
+        Intent i = getIntent();
+        String s=i.getStringExtra("amount");
+        amt.setText(s);
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

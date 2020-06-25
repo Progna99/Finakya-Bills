@@ -63,13 +63,24 @@ public class billadapter extends RecyclerView.Adapter<billadapter.ProductViewHol
     public class ProductViewHolder extends RecyclerView.ViewHolder {
         ImageView image1,image2,image3,image4,image5;
         TextView txt1,txt2,txt3,txt4,txt5,txt6,txt7,txt8,txt9,txt10;
-        public ProductViewHolder(@NonNull View itemView) {
+        Button btn;
+        public ProductViewHolder(@NonNull final View itemView) {
             super(itemView);
             txt1=itemView.findViewById(R.id.textView);
             txt2=itemView.findViewById(R.id.textView2);
 
             image1 = itemView.findViewById(R.id.imageView);
-
+            btn = itemView.findViewById(R.id.button);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(mctx, PaynowActivity.class);
+                    TextView tx = (TextView) itemView.findViewById(R.id.textView2);
+                    String s = tx.getText().toString();
+                    i.putExtra("amount", s);
+                    mctx.startActivity(i);
+                }
+            });
 
 
 

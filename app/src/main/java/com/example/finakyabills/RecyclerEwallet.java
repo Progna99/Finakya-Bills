@@ -12,11 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import io.realm.RealmResults;
+
 public class RecyclerEwallet extends RecyclerView.Adapter<RecyclerEwallet.MyViewHolder3>{
     Context mctx3;
-    List<Ewallet> mdata3;
+    RealmResults<Ewallet> mdata3;
 
-    public RecyclerEwallet(Context mctx3, List<Ewallet> mdata3) {
+    public RecyclerEwallet(Context mctx3, RealmResults<Ewallet> mdata3) {
         this.mctx3 = mctx3;
         this.mdata3 = mdata3;
     }
@@ -33,6 +35,7 @@ public class RecyclerEwallet extends RecyclerView.Adapter<RecyclerEwallet.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder3 holder, int position) {
+        Ewallet obj4=mdata3.get(position);
         holder.digit.setText(mdata3.get(position).getDigits());
         holder.image3.setImageResource(mdata3.get(position).getImage());
 

@@ -12,11 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import io.realm.RealmResults;
+
 public class RecyclerNetBanking extends RecyclerView.Adapter<RecyclerNetBanking.MyViewHolder4> {
     Context mctx4;
-    List<Netbanking> mdata4;
+    RealmResults<Netbanking> mdata4;
 
-    public RecyclerNetBanking(Context mctx4, List<Netbanking> mdata4) {
+    public RecyclerNetBanking(Context mctx4, RealmResults<Netbanking> mdata4) {
         this.mctx4 = mctx4;
         this.mdata4 = mdata4;
     }

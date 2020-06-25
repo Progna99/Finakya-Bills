@@ -1,8 +1,12 @@
 package com.example.finakyabills;
 
-public class Netbanking {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Netbanking extends RealmObject {
 
 
+    private long id4;
     private int bankimage;
     private String digit;
 
@@ -14,6 +18,13 @@ public class Netbanking {
         this.digit = digit;
     }
 
+    public long getId4() {
+        return id4;
+    }
+
+    public void setId4(long id4) {
+        this.id4 = id4;
+    }
 
     public int getBankimage() {
         return bankimage;

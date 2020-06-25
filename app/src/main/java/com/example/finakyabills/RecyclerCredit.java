@@ -9,13 +9,17 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
+
+import io.realm.RealmResults;
 
 public class RecyclerCredit extends RecyclerView.Adapter<RecyclerCredit.MyViewHolder> {
     Context mctx;
-    List<Credit> mdata;
+    RealmResults<Credit> mdata;
 
-    public RecyclerCredit(Context mctx, List<Credit> mdata) {
+    public RecyclerCredit(Context mctx, RealmResults<Credit> mdata) {
         this.mctx = mctx;
         this.mdata = mdata;
     }
@@ -31,8 +35,18 @@ public class RecyclerCredit extends RecyclerView.Adapter<RecyclerCredit.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.img.setImageResource(mdata.get(position).getImage());
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+        Credit obj = mdata.get(position);
+        holder.img.setImageDrawable(mctx.getResources().getDrawable(obj.getImage()));
+        holder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new EventBusPojo(position));
+
+
+            }
+        });
+
 
     }
 
@@ -45,7 +59,7 @@ public class RecyclerCredit extends RecyclerView.Adapter<RecyclerCredit.MyViewHo
         private ImageView img;
         public MyViewHolder(View itemView){
             super(itemView);
-            img=(ImageView) itemView.findViewById(R.id.imageView4);
+            img=(ImageView) itemView.findViewById(R.id.credit_image);
 
         }
     }
